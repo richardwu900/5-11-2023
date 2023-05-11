@@ -1,0 +1,20 @@
+<html>
+  <div class="description">
+    <p>Selected Note: {{selected.title}} : {{selected.content}}</p>
+  </div>
+  <input class="title" [(ngModel)]="title" placeholder="Note Title"><br>
+  <input class="content"  [(ngModel)]="content" placeholder="Note Content"><br>
+  <button (click)="clearAll()">New Note</button>
+  <button (click)="addItem()">Save Note</button>
+  <br>
+  <li *ngFor="let item of list" (click)="select(item, item.title, item.content)">
+    <!-- <input
+      type="checkbox"
+      id="{{ item.id }}"
+      [(ngModel)]="item.checked"
+      (change)="checkEvent($event)"
+    /> -->
+    {{ item.title }} : {{item.content}}
+    <button (click)="deleteItem(item)">delete</button>
+  </li>
+</html>
