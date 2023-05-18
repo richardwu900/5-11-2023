@@ -9,12 +9,18 @@ import { loadTodosFailure } from './todos.actions';
 
 @Injectable()
 export class TodosEffects {
+
+  constructor(
+        private actions: Actions,
+        private todosService: TodosService
+      ) {}
+
   loadTodos = createEffect(() =>
     this.actions.pipe(
       ofType(TodoActions.loadTodos),
       mergeMap(() =>
         this.todosService.getTodos().pipe(
-            //dispatch loadTodosSuccess action with successful map, adding valid todolist items
+          //dispatch loadTodosSuccess action with successful map, adding valid todolist items
           map((todos) => TodoActions.loadTodosSuccess({ todos })),
           catchError((error) => of(TodoActions.loadTodosFailure({ error })))
         )
@@ -22,8 +28,4 @@ export class TodosEffects {
     )
   );
 
-  constructor(
-    private actions: Actions,
-    private todosService: TodosService
-  ) {}
 }
