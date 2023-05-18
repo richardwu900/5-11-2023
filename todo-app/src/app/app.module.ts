@@ -17,7 +17,7 @@ import { TodosComponent } from './todos.component';
   ],
   imports: [
     BrowserModule,
-    FormsModule, // Place FormsModule before other modules
+    FormsModule,
     HttpClientModule,
     StoreModule.forRoot({ todos: todosReducer }),
     EffectsModule.forRoot([TodosEffects]),
