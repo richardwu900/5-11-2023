@@ -14,6 +14,7 @@ export class TodosEffects {
       ofType(TodoActions.loadTodos),
       mergeMap(() =>
         this.todosService.getTodos().pipe(
+            //dispatch loadTodosSuccess action with successful map, adding valid todolist items
           map((todos) => TodoActions.loadTodosSuccess({ todos })),
           catchError((error) => of(TodoActions.loadTodosFailure({ error })))
         )
